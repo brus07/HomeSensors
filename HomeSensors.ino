@@ -7,13 +7,14 @@
 
 #include "DoubleBlinker.h"
 #include "DHTSensor.h"
+#include "LightSensor.h"
 
 #include <DHT.h>
 
 
 //Scheduler
 TaskScheduler *scheduler;
-const int NUM_TASKS = 2;
+const int NUM_TASKS = 3;
 Task *tasks[NUM_TASKS];
 
 
@@ -21,9 +22,11 @@ Task *tasks[NUM_TASKS];
 void setup() {
 	Serial.begin(115200);
 
-	tasks[0] = new DoubleBlinker(13, 1000);
-	tasks[1] = new DHTSensor(2, 20000);
+	tasks[0] = new DHTSensor(2, 20000);
+	tasks[1] = new DoubleBlinker(13, 1000);
 	scheduler = new TaskScheduler(tasks, NUM_TASKS);
+
+  tasks[2] = new LightSensor(0, 10000);
 }
 
 // the loop function runs over and over again until power down or reset
