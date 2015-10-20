@@ -20,16 +20,16 @@ Task *tasks[NUM_TASKS];
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	Serial.begin(115200);
+  Serial.begin(115200);
 
-	tasks[0] = new DHTSensor(2, 20000);
-	tasks[1] = new DoubleBlinker(13, 1000);
-	scheduler = new TaskScheduler(tasks, NUM_TASKS);
+  scheduler = new TaskScheduler(tasks, NUM_TASKS);
 
+  tasks[0] = new DHTSensor(2, 20000);
+  tasks[1] = new DoubleBlinker(13, 1000);
   tasks[2] = new LightSensor(0, 10000);
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	scheduler->run();
+  scheduler->run();
 }
