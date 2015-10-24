@@ -30,7 +30,7 @@ void Monitor::run(uint32_t now)
     lcd.backlight();
     lcd.print("Hello, World!");
 		State = 1;
-    setRunTime(5000);
+    incRunTime(5000);
     break;
 	case 1:
     lcd.setCursor(0, 1);
@@ -38,6 +38,7 @@ void Monitor::run(uint32_t now)
     State = 2;
     break;
   case 2:
+    incRunTime(1000000);
     break;
 	}
 }
